@@ -16,5 +16,20 @@ RSpec.describe 'merchant show endpoint' do
     expect(merchant[:attributes][:name]).to eq(merchants.first.name)
   end
 
+  it 'does not return a record if the ID does not exist' do
+    merchants = create_list(:merchant, 5)
+
+    get "/api/v1/merchants/1"
+
+    response_body = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
+
+    expect(response_body[:message]).to eq("Error: Search not completed")
+    expect(response_body[:errors].first).to eq("no record found with id: 1")
+
+  end
+
 
 end
