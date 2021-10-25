@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'merchants API' do
+describe 'merchants index endpoint' do
   it 'gets all merchants' do
     create_list(:merchant, 5)
 
@@ -11,7 +11,7 @@ describe 'merchants API' do
     merchants = JSON.parse(response.body, symbolize_names: true)
 
     merchants[:data].each do |merchant|
-      expect(merchant[:id]).to be_an(Integer)
+      expect(merchant[:id]).to be_a(String)
       expect(merchant[:type]).to eq("merchant")
       expect(merchant[:attributes]).to be_a(Hash)
       expect(merchant[:attributes].length).to eq(1)
@@ -55,7 +55,7 @@ describe 'merchants API' do
     all_merchants = Merchant.all
 
     expect(merchants[:data].count).to eq(10)
-    expect(merchants[:data][0][:id]).to eq(all_merchants[10].id)
+    expect(merchants[:data][0][:id].to_i).to eq(all_merchants[10].id)
   end
 
   it 'returns the first page if a negative page is input' do
@@ -68,6 +68,6 @@ describe 'merchants API' do
     merchants = JSON.parse(response.body, symbolize_names: true)
 
     expect(merchants[:data].count).to eq(10)
-    expect(merchants[:data][0][:id]).to eq(Merchant.first.id)
+    expect(merchants[:data][0][:id].to_i).to eq(Merchant.first.id)
   end
 end
