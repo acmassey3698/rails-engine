@@ -48,4 +48,24 @@ RSpec.describe 'merchant items index request' do
       expect(item[:attributes][:merchant_id]).to_not eq(merch2.id)
     end
   end
+
+  it 'does not return items if the merchant is not found' do
+    merch1 = create(:merchant)
+    merch2 = create(:merchant)
+    item1 = create(:item, merchant: merch1)
+    item2 = create(:item, merchant: merch1)
+    item3 = create(:item, merchant: merch1)
+    item4 = create(:item, merchant: merch2)
+
+    get "/api/v1/merchants/1/items"
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
+
+    response_body = JSON.parse(response.body, symbolize_names: true)
+
+
+    expect(response_body[:message]).to eq("Error: Search not completed")
+    expect(response_body[:errors].first).to eq("no record found with id: 1")
+  end
 end
