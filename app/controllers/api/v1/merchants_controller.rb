@@ -4,6 +4,11 @@ class Api::V1::MerchantsController < ApplicationController
     render json: MerchantSerializer.all_merchants(merchants)
   end
 
+  def show
+    merchant = Merchant.find(params[:id])
+    render json: MerchantSerializer.one_merchant(merchant)
+  end
+
 private
   def results_per_page
     if params[:per_page].to_i.positive?
