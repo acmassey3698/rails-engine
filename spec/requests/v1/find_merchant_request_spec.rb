@@ -44,8 +44,19 @@ RSpec.describe 'find one merchant based on search criteria' do
 
     response_body = JSON.parse(response.body, symbolize_names: true)
     error = response_body[:data]
-
     expect(error[:message]).to eq("Error: Search not completed")
-    expect(error[:errors].first).to eq("no record found with id: ")
+  end
+
+  it 'returns an error when the search is empty' do
+    create_list(:merchant, 15)
+
+    get '/api/v1/merchants/find?name='
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+
+
+    response_body = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response_body[:message]).to eq("Error: Bad Request")
   end
 end
