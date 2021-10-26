@@ -5,5 +5,4 @@ class Item < ApplicationRecord
   validates :merchant_id, numericality: true
   validates :name, presence: true
   validates :description, presence: true
-
 end
