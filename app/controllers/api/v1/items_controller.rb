@@ -22,6 +22,11 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+  end
+
   private
   def results_per_page
     if params[:per_page].to_i.positive?
