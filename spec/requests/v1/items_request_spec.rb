@@ -68,7 +68,7 @@ RSpec.describe 'items index endpoint' do
 
   it 'returns the first page if a negative page is input' do
     merch1 = create(:merchant)
-    create_list(:item, 40, merchant: merch1)
+    list_items = create_list(:item, 40, merchant: merch1)
 
     get '/api/v1/items', params: { per_page: 10, page: -5 }
 
@@ -78,6 +78,6 @@ RSpec.describe 'items index endpoint' do
     items = response_body[:data]
 
     expect(items.count).to eq(10)
-    expect(items[0][:id].to_i).to eq(Item.first.id)
+    expect(items[0][:id].to_i).to eq(list_items.first.id)
   end
 end
