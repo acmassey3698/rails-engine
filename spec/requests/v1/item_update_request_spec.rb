@@ -48,8 +48,7 @@ RSpec.describe 'Update item endpoint' do
     expect(response.status).to eq(404)
 
     response_body = JSON.parse(response.body, symbolize_names: true)
-
-    expect(response_body[:message]).to eq("Error: Search not completed")
-    expect(response_body[:errors].first).to eq("no record found with id: 1")
+    expect(response_body[:data][:message]).to eq("Error: Search not completed")
+    expect(response_body[:data][:errors].first).to eq("no record found with id: 1")
   end
 end
