@@ -39,6 +39,6 @@ RSpec.describe 'create a new item' do
 
     response_body = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response_body[:message]).to eq("Error: Record not created")
+    expect(response_body[:message]).to eq("Error: Bad Request")
   end
 end

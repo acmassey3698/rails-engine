@@ -6,6 +6,6 @@ class ErrorSerializer
   end
 
   def self.bad_request
-    {status: :not_found, code: 400, message: "Error: Record not created" }
+    {status: :not_found, code: 400, message: "Error: Bad Request" }
   end
 end
