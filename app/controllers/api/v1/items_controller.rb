@@ -43,6 +43,15 @@ class Api::V1::ItemsController < ApplicationController
     record_not_found
   end
 
+  def find_all
+    if !params[:name].blank?
+      items = Item.search_by_name(params[:name])
+      render json: ItemSerializer.all_items(items)
+    else
+      bad_request
+    end
+  end
+
   private
   def results_per_page
     if params[:per_page].to_i.positive?

@@ -5,4 +5,10 @@ class Item < ApplicationRecord
   validates :merchant_id, numericality: true
   validates :name, presence: true
   validates :description, presence: true
+
+  def self.search_by_name(name)
+    Item.where("lower(name) LIKE ?", "%#{name.downcase}%")
+        .order(:name)
+  end
+
 end
