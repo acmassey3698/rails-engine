@@ -1,4 +1,5 @@
 class Api::V1::ItemsController < ApplicationController
+
   def index
     items = Item.limit(results_per_page).offset(calculate_offset)
     render json: ItemSerializer.all_items(items)
@@ -14,7 +15,6 @@ class Api::V1::ItemsController < ApplicationController
 
   def create
     item = Item.new(item_params)
-
     if item.save
       render json: ItemSerializer.one_item(item), status: 201
     else
@@ -44,8 +44,17 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def find_all
-    if !params[:name].blank?
+    if !params[:name].blank? && !params[:min_price] && !params[:max_price]
       items = Item.search_by_name(params[:name])
+      render json: ItemSerializer.all_items(items)
+    elsif !params[:name] && !params[:min_price].blank? && !params[:max_price]
+      items = Item.search_by_min(params[:min_price])
+      render json: ItemSerializer.all_items(items)
+    elsif !params[:name] && !params[:min_price] && !params[:max_price].blank?
+      items = Item.search_by_max(params[:max_price])
+      render json: ItemSerializer.all_items(items)
+    elsif !params[:name] && !params[:min_price].blank? && !params[:max_price].blank?
+      items = Item.search_within_range(params[:min_price], params[:max_price])
       render json: ItemSerializer.all_items(items)
     else
       bad_request
