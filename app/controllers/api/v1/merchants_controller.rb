@@ -12,7 +12,16 @@ class Api::V1::MerchantsController < ApplicationController
     record_not_found
   end
 
-
+  def find
+    if params[:name]
+      merchant = Merchant.search(params[:name])
+      if merchant.nil?
+        record_not_found
+      else
+        render json: MerchantSerializer.one_merchant(merchant)
+      end
+    end
+  end
 
 private
   def results_per_page
