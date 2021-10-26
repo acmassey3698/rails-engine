@@ -27,6 +27,6 @@ RSpec.describe 'merchant show endpoint' do
     expect(response.status).to eq(404)
 
     expect(response_body[:data][:message]).to eq("Error: Search not completed")
-    expect(response_body[:data][:errors].first).to eq("no record found with id: 1")
+    expect(response_body[:error].first).to eq("no record found with id: 1")
   end
 end
