@@ -25,6 +25,8 @@ class Api::V1::ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     item.destroy
+  rescue ActiveRecord::RecordNotFound
+    record_not_found
   end
 
   private
