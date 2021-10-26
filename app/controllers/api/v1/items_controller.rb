@@ -29,6 +29,20 @@ class Api::V1::ItemsController < ApplicationController
     record_not_found
   end
 
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+
+    if item.save
+      render json: ItemSerializer.one_item(item), status: 201
+    else
+      bad_request
+    end
+
+  rescue ActiveRecord::RecordNotFound
+    record_not_found
+  end
+
   private
   def results_per_page
     if params[:per_page].to_i.positive?
