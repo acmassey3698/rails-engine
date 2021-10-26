@@ -4,4 +4,8 @@ class ErrorSerializer
           errors: ["no record found with id: #{id}"],
         }
   end
+
+  def self.bad_request
+    {status: :not_found, code: 400, message: "Error: Record not created" }
+  end
 end

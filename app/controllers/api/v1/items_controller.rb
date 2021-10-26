@@ -12,6 +12,23 @@ class Api::V1::ItemsController < ApplicationController
     record_not_found
   end
 
+  def create
+    item = Item.new(item_params)
+
+    if item.save
+      render json: ItemSerializer.one_item(item), status: 201
+    else
+      bad_request
+    end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+  rescue ActiveRecord::RecordNotFound
+    record_not_found
+  end
+
   private
   def results_per_page
     if params[:per_page].to_i.positive?
@@ -27,5 +44,9 @@ class Api::V1::ItemsController < ApplicationController
     else
       page = 0
     end
+  end
+
+  def item_params
+    params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
   end
 end
