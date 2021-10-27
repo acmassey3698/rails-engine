@@ -40,4 +40,16 @@ class MerchantSerializer
       end
     }
   end
+
+  def self.one_merchant_revenue(merchant)
+    {
+      "data": {
+        "id": "#{merchant.id}",
+        "type": "merchant_revenue",
+        "attributes": {
+          "revenue": merchant.revenue
+        }
+      }
+    }
+  end
 end
