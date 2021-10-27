@@ -6,6 +6,6 @@ class ErrorSerializer
   end
 
   def self.bad_request
-    {status: :not_found, code: 400, message: "Error: Bad Request" }
+    {error: 'Missing information', status: :not_found, code: 400, message: "Error: Bad Request" }
   end
 end
