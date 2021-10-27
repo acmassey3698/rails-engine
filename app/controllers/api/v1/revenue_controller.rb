@@ -12,5 +12,8 @@ class Api::V1::RevenueController < ApplicationController
     merchant = Merchant.find(params[:id])
     merchant_rev = merchant.merchant_revenue
     render json: MerchantSerializer.one_merchant_revenue(merchant_rev)
+
+  rescue ActiveRecord::RecordNotFound
+    record_not_found
   end
 end

@@ -49,5 +49,18 @@ RSpec.describe 'one merchants revenue endpoint' do
     merchant = response_body[:data]
 
     expect(merchant[:id].to_i).to eq(@merch1.id)
+    expect(merchant[:type]).to eq("merchant_revenue")
+    expect(merchant[:attributes][:revenue]).to be_a(Float)
+  end
+
+  it 'returns a 404 if there is no merchant with the given ID' do
+    get '/api/v1/revenue/merchants/1'
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
+
+    response_body = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response_body[:error].first).to eq("no record found with id: 1")
   end
 end
