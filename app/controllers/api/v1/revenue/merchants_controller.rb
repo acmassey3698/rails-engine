@@ -1,5 +1,5 @@
-class Api::V1::RevenueController < ApplicationController
-  def top_merchants
+class Api::V1::Revenue::MerchantsController < ApplicationController
+  def index
     if params[:quantity].blank? || !params[:quantity] || params[:quantity].to_i.negative?
       bad_request
     else
