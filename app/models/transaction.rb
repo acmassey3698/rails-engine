@@ -1,3 +1,3 @@
 class Transaction < ApplicationRecord
-
-end 
+  belongs_to :invoice
+end
