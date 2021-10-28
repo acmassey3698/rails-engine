@@ -16,7 +16,9 @@ class Api::V1::MerchantsController < ApplicationController
     if !params[:name].blank?
       merchant = Merchant.search(params[:name])
       if merchant.nil?
-        record_not_found
+        render json: {
+        data: { message: "no merchant name found including '#{params[:name]}'" }
+      }, status: 404
       else
         render json: MerchantSerializer.one_merchant(merchant)
       end
