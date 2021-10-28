@@ -99,18 +99,5 @@ RSpec.describe 'Rank x number of merchants by items sold endpoint' do
 
     expect(response).to_not be_successful
     response_body = JSON.parse(response.body, symbolize_names: true)
-    # merchants = response_body[:data]
-    # expect(merchants.length).to eq(5)
-    # 
-    # expect(merchants[0][:id].to_i).to eq(@merch6.id)
-    # expect(merchants[0][:attributes][:count]).to be_an(Integer)
-    # expect(merchants[1][:id].to_i).to eq(@merch5.id)
-    # expect(merchants[1][:attributes][:count]).to be_an(Integer)
-    # expect(merchants[2][:id].to_i).to eq(@merch4.id)
-    # expect(merchants[2][:attributes][:count]).to be_an(Integer)
-    # expect(merchants[3][:id].to_i).to eq(@merch8.id)
-    # expect(merchants[3][:attributes][:count]).to be_an(Integer)
-    # expect(merchants[4][:id].to_i).to eq(@merch7.id)
-    # expect(merchants[4][:attributes][:count]).to be_an(Integer)
   end
 end
