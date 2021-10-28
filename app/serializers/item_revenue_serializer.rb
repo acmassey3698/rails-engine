@@ -1,5 +1,4 @@
 class ItemRevenueSerializer
-
   def self.all_items(items)
     {
       "data": items.map do |item|

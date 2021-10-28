@@ -4,14 +4,14 @@ class Api::V1::Revenue::MerchantsController < ApplicationController
       bad_request
     else
       merchants = Merchant.top_merchants(params[:quantity])
-      render json: MerchantSerializer.all_merchants_revenue(merchants)
+      render json: MerchantNameRevenueSerializer.all_merchants(merchants)
     end
   end
 
   def show
     merchant = Merchant.find(params[:id])
     merchant_rev = merchant.merchant_revenue
-    render json: MerchantSerializer.one_merchant_revenue(merchant_rev)
+    render json: MerchantRevenueSerializer.one_merchant(merchant_rev)
 
   rescue ActiveRecord::RecordNotFound
     record_not_found
