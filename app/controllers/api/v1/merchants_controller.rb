@@ -26,21 +26,4 @@ class Api::V1::MerchantsController < ApplicationController
       bad_request
     end
   end
-
-private
-  def results_per_page
-    if params[:per_page].to_i.positive?
-      per_page = params[:per_page]
-    else
-      per_page = 20
-    end
-  end
-
-  def calculate_offset
-    if params[:page].to_i.positive?
-      page = results_per_page * (params[:page].to_i - 1)
-    else
-      page = 0
-    end
-  end
 end
