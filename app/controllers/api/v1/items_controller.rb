@@ -1,5 +1,4 @@
 class Api::V1::ItemsController < ApplicationController
-
   def index
     items = Item.limit(results_per_page).offset(calculate_offset)
     render json: ItemSerializer.all_items(items)
