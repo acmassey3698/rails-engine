@@ -80,7 +80,8 @@ RSpec.describe 'Rank x number of merchants by items sold endpoint' do
 
     response_body = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response_body[:message]).to eq("Error: Bad Request")
+    expect(response_body[:message]).to eq("Record not found")
+    expect(response_body[:error]).to eq("Query missing required information")
   end
 
   it 'returns an error if the user sends a blank quantity' do
@@ -91,7 +92,8 @@ RSpec.describe 'Rank x number of merchants by items sold endpoint' do
 
     response_body = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response_body[:message]).to eq("Error: Bad Request")
+    expect(response_body[:message]).to eq("Record not found")
+    expect(response_body[:error]).to eq("Query missing required information")
   end
 
   it 'defaults to 5 merchants when the quantity param is omitted' do

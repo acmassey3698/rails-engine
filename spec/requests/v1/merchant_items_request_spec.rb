@@ -65,7 +65,7 @@ RSpec.describe 'merchant items index request' do
     response_body = JSON.parse(response.body, symbolize_names: true)
 
 
-    expect(response_body[:data][:message]).to eq("Error: Search not completed")
-    expect(response_body[:error].first).to eq("no record found with id: 1")
+    expect(response_body[:message]).to eq("your query could not be completed")
+    expect(response_body[:error].first).to eq("no object found with id: 1")
   end
 end

@@ -75,7 +75,8 @@ RSpec.describe 'find all items request' do
 
       response_body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response_body[:message]).to eq("Error: Bad Request")
+      expect(response_body[:message]).to eq("Record not found")
+      expect(response_body[:error]).to eq("Query missing required information")
     end
   end
 
@@ -141,7 +142,8 @@ RSpec.describe 'find all items request' do
 
       response_body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response_body[:message]).to eq("Error: Bad Request")
+      expect(response_body[:message]).to eq("Record not found")
+      expect(response_body[:error]).to eq("Query missing required information")
     end
   end
 
@@ -204,7 +206,8 @@ RSpec.describe 'find all items request' do
 
       response_body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response_body[:message]).to eq("Error: Bad Request")
+      expect(response_body[:message]).to eq("Record not found")
+      expect(response_body[:error]).to eq("Query missing required information")
     end
   end
 
@@ -267,7 +270,8 @@ RSpec.describe 'find all items request' do
 
       response_body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response_body[:message]).to eq("Error: Bad Request")
+      expect(response_body[:message]).to eq("Record not found")
+      expect(response_body[:error]).to eq("Query missing required information")
     end
 
     it 'sends an error when no value is given for min_price' do
@@ -287,7 +291,8 @@ RSpec.describe 'find all items request' do
 
       response_body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response_body[:message]).to eq("Error: Bad Request")
+      expect(response_body[:message]).to eq("Record not found")
+      expect(response_body[:error]).to eq("Query missing required information")
     end
 
     it 'sends an error when no value is given for either min or max_price' do
@@ -307,7 +312,8 @@ RSpec.describe 'find all items request' do
 
       response_body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response_body[:message]).to eq("Error: Bad Request")
+      expect(response_body[:message]).to eq("Record not found")
+      expect(response_body[:error]).to eq("Query missing required information")
     end
   end
 
@@ -329,7 +335,8 @@ RSpec.describe 'find all items request' do
 
       response_body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response_body[:message]).to eq("Error: Bad Request")
+      expect(response_body[:message]).to eq("Record not found")
+      expect(response_body[:error]).to eq("Query missing required information")
     end
 
     it 'doesnt allow for a name with a max value' do
@@ -349,7 +356,8 @@ RSpec.describe 'find all items request' do
 
       response_body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response_body[:message]).to eq("Error: Bad Request")
+      expect(response_body[:message]).to eq("Record not found")
+      expect(response_body[:error]).to eq("Query missing required information")
     end
 
     it 'doesnt allow for a name with a max and min value' do
@@ -369,7 +377,8 @@ RSpec.describe 'find all items request' do
 
       response_body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response_body[:message]).to eq("Error: Bad Request")
+      expect(response_body[:message]).to eq("Record not found")
+      expect(response_body[:error]).to eq("Query missing required information")
     end
   end
 end

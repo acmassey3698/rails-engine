@@ -67,7 +67,8 @@ RSpec.describe 'Merchants sorted by descending revenue endpoint' do
 
     response_body = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response_body[:message]).to eq("Error: Bad Request")
+    expect(response_body[:message]).to eq("Record not found")
+    expect(response_body[:error]).to eq("Query missing required information")
   end
 
   it 'returns an error if the quantity is a negative number' do
@@ -78,6 +79,7 @@ RSpec.describe 'Merchants sorted by descending revenue endpoint' do
 
     response_body = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response_body[:message]).to eq("Error: Bad Request")
+    expect(response_body[:message]).to eq("Record not found")
+    expect(response_body[:error]).to eq("Query missing required information")
   end
 end
