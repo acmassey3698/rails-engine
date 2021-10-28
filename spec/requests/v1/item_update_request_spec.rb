@@ -36,7 +36,8 @@ RSpec.describe 'Update item endpoint' do
 
     response_body = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response_body[:message]).to eq("Error: Bad Request")
+    expect(response_body[:message]).to eq("Record not found")
+    expect(response_body[:error]).to eq("Query missing required information")
   end
 
   it 'does not update if the item does not exist' do
@@ -48,7 +49,7 @@ RSpec.describe 'Update item endpoint' do
     expect(response.status).to eq(404)
 
     response_body = JSON.parse(response.body, symbolize_names: true)
-    expect(response_body[:data][:message]).to eq("Error: Search not completed")
-    expect(response_body[:error].first).to eq("no record found with id: 1")
+    expect(response_body[:message]).to eq("your query could not be completed")
+    expect(response_body[:error].first).to eq("no object found with id: 1")
   end
 end
