@@ -3,6 +3,11 @@
 ### Description 
   Rails Engine is a rails API created for consumption by a front-end team. Rails Engine has a variety of endpoints that provide information about commerce data in ranging from indexes of items to specific revenue information for merchants in the database. 
   
+### Schema Design
+
+![rails_engine_schema](https://user-images.githubusercontent.com/75844153/144647589-66c349a0-e9ee-453a-9605-4acf7bca168e.png)
+
+  
 ### Ruby/Rails Versions
   - Ruby: 2.7.2
   - Rails: 5.2.6
